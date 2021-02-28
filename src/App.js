@@ -14,14 +14,21 @@ function App() {
 
   function prettyPrint() {
     var ugly = document.getElementById('jsonTextArea').value
-    var obj = JSON.parse(ugly)
-    var pretty = JSON.stringify(obj, undefined, 4)
-    document.getElementById('jsonTextArea').value = pretty
+    if ( ugly.length > 0 )
+    {
+      var obj = JSON.parse(ugly)
+      var pretty = JSON.stringify(obj, undefined, 4)
+      document.getElementById('jsonTextArea').value = pretty
+    }
   }
 
   function defaultValues() {
-    document.getElementById('jsonTextArea').innerHTML = dataStr
+    document.getElementById('jsonTextArea').value = dataStr
     prettyPrint()
+  }
+
+  function clearValues() {
+    document.getElementById('jsonTextArea').value = ""
   }
 
   function clearFormElements() {
@@ -44,11 +51,15 @@ function App() {
     for ( var item in obj ) {
       if ( obj[item].tag === "input" )
       {
-        var inputStr = "<div><label>" + obj[item].human_label + "</label>" 
+        var inputStr = "<div class=\"row\">"
+        + "<div class=\"col text-right\">"
+        + "<label>" + obj[item].human_label + "</label></div>"
+        + "<div class=\"col text-left\">"
         + "<input type=" + obj[item].type +" name=" 
-        + obj[item].name +"></input></div>"
+        + obj[item].name +"></input></div></div>"
         elemArea.innerHTML += inputStr
       }
+
     }
 
     /*
@@ -69,13 +80,15 @@ function App() {
       Input the JSON in this textarea, 
       or use the default values button below
       </div>
-      <textarea id="jsonTextArea" cols="50" rows="20" />
-      <button onClick={prettyPrint} class="btn btn-primary">Pretty Print</button>
-      <button onClick={defaultValues} class="btn btn-secondary">Use Default Values</button>
-      <br />
-      <button onClick={generateFormElements} class="btn btn-success">Generate Form Elements</button>
-      <button onClick={clearFormElements} class="btn btn-danger">Clear Form Elements</button>
-      <br />
+      <textarea id="jsonTextArea" cols="80" rows="20"  />
+      <div class="buttonArea">
+        <button onClick={prettyPrint} class="btn btn-outline-primary">Pretty Print</button>
+        <button onClick={defaultValues} class="btn btn-outline-secondary">Fill Default Values</button>
+        <button onClick={clearValues} class="btn btn-outline-info">Clear Values</button>
+        <br />
+        <button onClick={generateFormElements} class="btn btn-primary">Generate Form Elements</button>
+        <button onClick={clearFormElements} class="btn btn-secondary">Clear Form Elements</button>
+      </div>
       <div id="elementArea"> </div>
     </div>
   );
