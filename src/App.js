@@ -1,10 +1,12 @@
 //import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 // loading json data from file
 import myData from './input.json';
 
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function App() {
 
@@ -59,7 +61,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="App">
       <div>
       This is a sample application to display form elements
       </div>
@@ -67,14 +69,15 @@ function App() {
       Input the JSON in this textarea, 
       or use the default values button below
       </div>
-      <textarea id="jsonTextArea" cols="70" rows="30" />
-      <button onClick={prettyPrint}>Pretty Print</button>
-      <button onClick={defaultValues}>Use Default Values</button>
+      <textarea id="jsonTextArea" cols="50" rows="20" />
+      <button onClick={prettyPrint} class="btn btn-primary">Pretty Print</button>
+      <button onClick={defaultValues} class="btn btn-secondary">Use Default Values</button>
       <br />
-      <button onClick={generateFormElements}>Generate Form Elements</button>
-      <button onClick={clearFormElements}>Clear Form Elements</button>
+      <button onClick={generateFormElements} class="btn btn-success">Generate Form Elements</button>
+      <button onClick={clearFormElements} class="btn btn-danger">Clear Form Elements</button>
+      <br />
       <div id="elementArea"> </div>
-    </>
+    </div>
   );
 
 }
