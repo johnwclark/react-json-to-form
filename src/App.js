@@ -8,9 +8,17 @@ import myData from './input.json';
 import React from 'react';
 import button from 'react-bootstrap';
 
+// just a random unique id 
+var uniqueID = ( function() {
+  var id =
+    Math.floor(Math.random() * Math.floor(Math.pow(2,32)-1));
+  return function() { return id++ };
+})();
+
 function App() {
 
   
+  const formIds = [];
   var dataStr = JSON.stringify(myData);
 
 
@@ -44,6 +52,13 @@ function App() {
     elemArea.innerHTML = "";
   }
 
+  function captureFormData () {
+    console.log("captureFormData")
+    console.log(formIds)
+    // not getting here
+  }
+
+  
   function generateFormElements() {
     var ugly = document.getElementById('jsonTextArea').value
     if ( ugly.length === 0 )
@@ -55,24 +70,25 @@ function App() {
 
     clearFormElements();
     var elemArea = document.getElementById('elementArea')
-    var inputStr = `<form class="formElem" onSubmit={handleSubmit}>`
-    elemArea.innerHTML += inputStr
 
     for ( var item in obj ) {
       if ( obj[item].tag === "input" )
       {
-        inputStr = "<div class=\"row\">"
+        var tmpId = uniqueID()
+        var inputStr = "<div class=\"row\">"
         + "<div class=\"col text-right\">"
         + "<label>" + obj[item].human_label + "</label></div>"
         + "<div class=\"col text-left\">"
         + "<input type=" + obj[item].type +" name=" 
-        + obj[item].name +"></input></div></div>"
+        + obj[item].name + " id=" + tmpId
+        +"></input></div></div>"
         elemArea.innerHTML += inputStr
       }
     }
 
-    elemArea.innerHTML += "<input type=\"submit\" name=\"Submit\" />"
-    elemArea.innerHTML += "</form>"
+    inputStr = "<button onClick=" + {captureFormData}
+    + " class=\"btn btn-primary\">Capture Form Data</button>"
+    elemArea.innerHTML += inputStr
 
 
     /*

@@ -87,3 +87,8 @@ block broke the JSON.parse() ... I think for this to work,
 that JavaScript/JSX needs to be escaped in some way, that I wasn't 
 able to figure out. Doing so would break the pretty printing and JSON 
 parsing / validation I have in the code.
+
+Not being much of a React guy, this was challenging on several fronts.  
+I m definately thinking more like a Javascript person, and find that 
+translation between the JS elements and JSX isn't very obvious and the 
+documentation leans toward video tutorials, which is not time efficient.
