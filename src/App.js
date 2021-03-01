@@ -6,11 +6,18 @@ import './App.css';
 import myData from './input.json';
 
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import button from 'react-bootstrap';
 
 function App() {
 
+  
   var dataStr = JSON.stringify(myData);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    alert('You have submitted the form.')
+  }
+
 
   function prettyPrint() {
     var ugly = document.getElementById('jsonTextArea').value
@@ -47,6 +54,7 @@ function App() {
 
     clearFormElements();
     var elemArea = document.getElementById('elementArea')
+    elemArea.innerHTML += "<form class=\"formElem\" onSubmit={handleSubmit}>"
 
     for ( var item in obj ) {
       if ( obj[item].tag === "input" )
@@ -59,8 +67,11 @@ function App() {
         + obj[item].name +"></input></div></div>"
         elemArea.innerHTML += inputStr
       }
-
     }
+
+    elemArea.innerHTML += "<input type=\"submit\" name=\"Submit\" />"
+    elemArea.innerHTML += "</form>"
+
 
     /*
      As a design issue this might be better with a FormItem type,
