@@ -84,4 +84,6 @@ On form submit, this field would be represented like so:
 
 The JSON was missing the closing } for the conditional, and the show_if
 block broke the JSON.parse() ... I think for this to work, 
-that JavaScript/JSX needs to be escaped
+that JavaScript/JSX needs to be escaped in some way, that I wasn't 
+able to figure out. Doing so would break the pretty printing and JSON 
+parsing / validation I have in the code.

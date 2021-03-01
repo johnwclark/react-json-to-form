@@ -13,9 +13,15 @@ function App() {
   
   var dataStr = JSON.stringify(myData);
 
-  const handleSubmit = event => {
+
+  // I can't get these to fire 
+  function handleSubmit(event) {
     event.preventDefault();
-    alert('You have submitted the form.')
+    alert('You have submitted the form.');
+  }
+
+  function handleChange(e) {
+    console.log(e.target.value);
   }
 
 
@@ -54,17 +60,19 @@ function App() {
 
     clearFormElements();
     var elemArea = document.getElementById('elementArea')
-    elemArea.innerHTML += "<form class=\"formElem\" onSubmit={handleSubmit}>"
+    var inputStr = `<form class="formElem" onSubmit=${{ handleSubmit }}>`
+    elemArea.innerHTML += inputStr
 
     for ( var item in obj ) {
       if ( obj[item].tag === "input" )
       {
-        var inputStr = "<div class=\"row\">"
+        inputStr = "<div class=\"row\">"
         + "<div class=\"col text-right\">"
         + "<label>" + obj[item].human_label + "</label></div>"
         + "<div class=\"col text-left\">"
         + "<input type=" + obj[item].type +" name=" 
-        + obj[item].name +"></input></div></div>"
+        + obj[item].name + " onChange="+ {handleChange} 
+        +"></input></div></div>"
         elemArea.innerHTML += inputStr
       }
     }
