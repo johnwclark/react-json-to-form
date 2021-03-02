@@ -2,10 +2,8 @@
 creates form frontend from JSON data
 
 
-# this is from the take home at Sparrow
+# this is a take assignment for a job
 
-https://www.notion.so/Sparrow-Engineering-Take-Home-da831af531f2453d96c16469bc924f39
-o
 
 ##
 
